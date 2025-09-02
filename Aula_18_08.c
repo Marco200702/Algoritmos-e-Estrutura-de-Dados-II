@@ -23,3 +23,5 @@ int main(void){
     printf(" -> Saida NOT logico: %i \n", !(x<y));
     return 0;
 }
+
+
