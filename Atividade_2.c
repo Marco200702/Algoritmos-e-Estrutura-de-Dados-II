@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 
-//ATIVIDADE
+//ATIVIDADE 2
 //zerar cada posição das strings
 //mostrar o conteúdo vazio delas;
 //pegar via tarminal, o nome completo (str1) e nome da cidade (str2);
@@ -22,7 +22,7 @@ int main() {
     }
 
     // Mostrar conteúdo vazio
-    printf("Conteudo vazio de str1: \"%s\"\n", str1);
+    printf("\nConteudo vazio de str1: \"%s\"\n", str1);
     printf("Conteudo inicial de str2: \"%s\"\n", str2);
 
     // Ler os dados via terminal

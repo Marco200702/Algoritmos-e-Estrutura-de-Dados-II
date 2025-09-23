@@ -19,13 +19,13 @@ int main(void){
     printf("\nDigite seu nome completo: ");
     fgets(nome, sizeof(nome), stdin);
 
-    printf("\nInsira o valor da primeira parcela: ");
+    printf("\nInsira o valor da primeira parcela: R$ ");
     scanf("%f", &parc1);
 
-    printf("Insira o valor da segunda parcela: ");
+    printf("Insira o valor da segunda parcela: R$ ");
     scanf("%f", &parc2);
 
-    printf("Insira o valor da terceira parcela: ");
+    printf("Insira o valor da terceira parcela: R$ ");
     scanf("%f", &parc3);
 
     printf("A mensalidade tera taxa? (1 = sim / 0 = nao): ");
