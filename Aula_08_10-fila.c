@@ -1,10 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 // Definição da estrutura do nó da fila, aquilo que guarda a 
 // informação que se deseja e também o endereço do próximo da fila.
 typedef struct No {
-    int dado;
+    char nome[51];
+    int idade;
     struct No* proximo;
 } No;
 
@@ -18,7 +20,7 @@ typedef struct {
 
 // ----- INÍCIO DA ÁREA DE DECLARAÇÃO DAS FUNÇÕES ----- //
 Fila* criarFila();
-void inserir(Fila* fila, int valor);
+void inserir(Fila* fila, char palavra[51], int valor);
 int remover(Fila* fila);
 void visualizar(Fila* fila);
 //void liberarFila(Fila* fila);
@@ -31,19 +33,22 @@ void esperarEnter();
 int main() {
     Fila* minhaFila = criarFila();
     int escolha, valor;
+    char palavra[51];
 
     do {
         escolha = mostrarMenu();
         switch (escolha) {
             case 1:
-                printf("\n > Digite um valor para inserir: ");
+                printf("\n > Digite um nome para inserir: ");
+                fgets(palavra, sizeof(palavra), stdin);
+                printf("\n > Insira uma idade: ");
                 scanf("%d", &valor);
-                inserir(minhaFila, valor);
+                inserir(minhaFila, palavra, valor);
                 break;
             case 2:
                 valor = remover(minhaFila);
                 if (valor != -1) {
-                    printf("\n > Removido: %d\n", valor);
+                    printf("\n > Removido: %s e %d\n", palavra, valor);
                     esperarEnter();
                 }
                 break;
@@ -87,9 +92,10 @@ Fila* criarFila() {
  * @param valor: deve conter um valor do tipo inteiro.
  * @return void: sen retorno
  */
-void inserir(Fila* fila, int valor) {
+void inserir(Fila* fila, char palavra[51], int valor) {
     No* novoNo = (No*)malloc(sizeof(No));
-    novoNo->dado = valor;
+    strcpy(novoNo -> nome, palavra);
+    novoNo->idade = valor;
     novoNo->proximo = NULL;
     if (fila->fim == NULL) {
         fila->inicio = novoNo;
@@ -113,13 +119,14 @@ int remover(Fila* fila) {
         return -1;
     }
     No* temp = fila->inicio;
-    int valor = temp->dado;
+    char palavra[51];
+    strcpy(palavra, temp->nome);
     fila->inicio = fila->inicio->proximo;
     if (fila->inicio == NULL) {
         fila->fim = NULL;
     }
     free(temp);
-    return valor;
+    return palavra;
 }
 
 /**
@@ -135,7 +142,7 @@ void visualizar(Fila* fila) {
         No* atual = fila->inicio;
         printf("\n > Elementos na fila: \n\n\t");
         while (atual != NULL) {
-            printf("%d (%p) -> ", atual->dado, atual);
+            printf("%c e %d (%p) -> ", atual->nome, idade, atual);
             atual = atual->proximo;
         }
     }
